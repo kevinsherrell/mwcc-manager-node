@@ -17,4 +17,15 @@ storeRouter.post('/create', (req, res) => {
 //
 })
 
+storeRouter.put("/update", (req,res)=>{
+
+        Store.findByIdAndUpdate({_id: req.body.id}, req.body, {new: true}, (err, store)=>{
+            try{
+                return res.status(201).send(store);
+            }catch(err){
+                return res.send(err);
+            }
+        })
+
+})
 module.exports = storeRouter;

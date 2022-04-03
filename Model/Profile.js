@@ -11,6 +11,10 @@ const ProfileSchema = new Schema({
         // default: Date.now(),
         // required: true
     },
+    active: {
+        type: Boolean,
+        default: true
+    },
     user:{
         type: Schema.Types.ObjectId,
         required: true

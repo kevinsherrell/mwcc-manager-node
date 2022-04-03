@@ -61,7 +61,8 @@ mongoose.connect(MONGO_URI, (err) => {
 
 app.use('/user', require('./Controller/User'));
 app.use('/store', require('./Controller/Store'));
+app.use('/profile', require('./Controller/Profile'));
 
 app.listen(port, () => {
     console.log(`example app listening to port ${port}`)
-})
+});
