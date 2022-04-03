@@ -15,7 +15,7 @@ const TimesheetSchema = new Schema({
     employee: {
         type: Schema.Types.ObjectId,
         required: true,
-        ref: "Employee"
+        ref: "User"
     },
     period: {
         type: Schema.Types.ObjectId,
