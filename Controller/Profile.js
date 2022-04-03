@@ -11,15 +11,14 @@ profileRouter.get('/all', (req, res) => {
         try {
             res.status(200).send(profiles);
         } catch (err) {
-            res.send(err);
+            res.status(400).send(err);
         }
     })
 })
-
+// Get Profile By Id
 profileRouter.get("/:id", (req,res)=>{
     Profile.findOne({_id: req.params.id}, (err, profile)=>{
         try{
-
             res.status(200).send(profile);
         }catch(err){
             res.status(400).send(err);
@@ -32,7 +31,7 @@ profileRouter.put('/update/:id', (req, res) => {
     Profile.findByIdAndUpdate({_id: req.params.id}, req.body, {new: true}, (err, updatedProfile) => {
 
         try {
-            return res.status(201).send(updatedProfile);
+            return res.status(200).send(updatedProfile);
         } catch (err) {
             return res.status(500).send(err);
 
