@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
-const SaleSchema = new Schema({
+const SpecialSchema = new Schema({
         dateCreated: {
             type: Date,
             required: true,
@@ -14,27 +14,20 @@ const SaleSchema = new Schema({
         },
         timesheet: {
             type: Schema.Types.ObjectId,
+            requird: true
+        },
+        description: {
+            type: String,
             required: true
         },
-        cost: {
+        amount: {
             type: Number,
             required: true
-        },
-        salePrice: {
-            type: Number,
-            required: true
-        },
-        profit: {
-            type: Number,
-            default: 0
         }
-
     }
 )
 
-SaleSchema.methods.getProfit = function (cost, salePrice) {
-    return salePrice - cost;
-}
 
 
-module.exports = mongoose.model('Sale', SaleSchema);
+
+module.exports = mongoose.model('Special', SpecialSchema);

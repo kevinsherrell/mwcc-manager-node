@@ -64,8 +64,7 @@ app.use('/store', require('./Controller/Store'));
 app.use('/profile', require('./Controller/Profile'));
 app.use('/period', require('./Controller/PayPeriod'));
 app.use('/timesheet', require('./Controller/Timesheet'));
-app.use('/sale', require('./Controller/Sale'));
-
+app.use('/special', require('./Controller/Special'));
 app.listen(port, () => {
     console.log(`example app listening to port ${port}`)
 });

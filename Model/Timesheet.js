@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
 const Profile = require('./Profile');
-const Sale = require('./Sale');
 
 const TimesheetSchema = new Schema({
         dateCreated: {
@@ -37,23 +36,27 @@ const TimesheetSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: "VacationEntry"
         }],
-        sales: [{
-            type: Schema.Types.ObjectId,
-            ref: "Sale"
-        }],
-        uhaul: {
+        sales: {
             type: Number,
             default: 0
         },
+        profit: {
+            type: Number,
+            default: 0
+        },
+
         spiff: {
             type: Number,
             default: 0
         },
         special: [{
+            type: Schema.Types.ObjectId,
+            ref: "Special"
+        }],
+        uhaul: {
             type: Number,
             default: 0
-        }]
-
+        }
     }
 )
 

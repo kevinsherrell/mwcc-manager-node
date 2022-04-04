@@ -14,7 +14,10 @@ timesheetRouter.get('/all', (req, res) => {
         } catch (err) {
             res.send(err.message);
         }
-    }).populate("sales");
+    })
+        .populate("special")
+
+
 })
 
 timesheetRouter.get("/:id", (req, res) => {
@@ -25,6 +28,7 @@ timesheetRouter.get("/:id", (req, res) => {
             res.status(400).send(err);
         }
     })
+        .populate("special")
 })
 timesheetRouter.post('/create', (req, res) => {
     Timesheet.create({
@@ -63,7 +67,7 @@ timesheetRouter.post('/calculateCommission', (req, res) => {
         .then(user => {
             console.log(user.id);
             Timesheet.findOne({employee: user.id})
-                .then(timesheet=>{
+                .then(timesheet => {
                     console.log(user);
                     console.log(profile);
                     let totalCommission = user.commissionRate * timesheet.profit;
