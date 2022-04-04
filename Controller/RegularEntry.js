@@ -7,25 +7,27 @@ const Timesheet = require('../Model/Timesheet');
 const Special = require('../Model/Special');
 const RegularEntry = require('../Model/RegularEntry');
 
-// specialRouter.get('/all', (req, res) => {
-//     Special.find((err, specials) => {
-//         try {
-//             res.status(200).send(specials);
-//         } catch (err) {
-//             res.send(err.message);
-//         }
-//     })
-// })
-//
-// specialRouter.get("/:id", (req, res) => {
-//     Special.findOne({_id: req.params.id}, (err, special) => {
-//         try {
-//             res.status(200).send(special);
-//         } catch (err) {
-//             res.status(400).send(err);
-//         }
-//     })
-// })
+regularEntryRouter.get('/all', (req, res) => {
+    RegularEntry.find((err, entries) => {
+        try {
+            res.status(200).send(entries);
+        } catch (err) {
+            res.send(err.message);
+        }
+    })
+})
+
+regularEntryRouter.get("/:id", (req, res) => {
+    RegularEntry.findOne({_id: req.params.id}, (err, entry) => {
+        try {
+            res.status(200).send(entry);
+        } catch (err) {
+            res.status(400).send(err);
+        }
+    })
+})
+
+
 regularEntryRouter.post('/create', (req, res) => {
     console.log("firing");
     let newEntry = new RegularEntry({
@@ -64,7 +66,7 @@ regularEntryRouter.put('/update/:id', (req, res) => {
             console.log(updatedEntry.out.getTime() - updatedEntry.in.getTime());
             console.log(timeDiff);
             console.log(diffHours);
-            // console.log(`${hours}: ${minutes}: ${seconds}`);
+
             updatedEntry.totalHours = diffHours;
             updatedEntry.save();
             return res.status(201).send(updatedEntry);
