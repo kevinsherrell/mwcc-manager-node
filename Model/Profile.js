@@ -3,19 +3,17 @@ const {Schema} = mongoose;
 const ProfileSchema = new Schema({
     dateCreated: {
         type: Date,
-        // default: Date.now(),
-        // required: true
+        default: Date.now(),
     },
     dateUpdated: {
         type: Date,
-        // default: Date.now(),
-        // required: true
+        default: Date.now(),
     },
     active: {
         type: Boolean,
         default: true
     },
-    user:{
+    user: {
         type: Schema.Types.ObjectId,
         required: true
     },
@@ -27,13 +25,18 @@ const ProfileSchema = new Schema({
         type: String,
         required: true
     },
-    store:{
-      type: Schema.Types.ObjectId,
+    store: {
+        type: Schema.Types.ObjectId,
         ref: 'Store'
     },
     role: {
         type: String,
         required: true
+    },
+    commissionRate: {
+        type: Number,
+        required: true,
+        default: 0
     },
     salesHourly: {
         type: Number,

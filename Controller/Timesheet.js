@@ -4,16 +4,17 @@ const timesheetRouter = express.Router();
 const bcrypt = require('bcrypt');
 
 const Timesheet = require('../Model/Timesheet');
-
+const User = require('../Model/User');
+const Profile = require('../Model/Profile');
 
 timesheetRouter.get('/all', (req, res) => {
     Timesheet.find((err, timesheets) => {
         try {
             res.status(200).send(timesheets);
         } catch (err) {
-            res.send(err);
+            res.send(err.message);
         }
-    })
+    }).populate("sales");
 })
 
 timesheetRouter.get("/:id", (req, res) => {
@@ -53,7 +54,22 @@ timesheetRouter.put('/update/:id', (req, res) => {
         }
     })
 
+})
 
+timesheetRouter.post('/calculateCommission', (req, res) => {
+    console.log("calculate is firing");
+    let commission;
+    User.findOne({_id: req.body.employeeId})
+        .then(user => {
+            console.log(user.id);
+            Timesheet.findOne({employee: user.id})
+                .then(timesheet=>{
+                    console.log(user);
+                    console.log(profile);
+                    let totalCommission = user.commissionRate * timesheet.profit;
+                })
+
+        })
 })
 
 module.exports = timesheetRouter;

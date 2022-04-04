@@ -38,7 +38,7 @@ app.use(morgan('dev'));
 // app.use(methodOverride('_method'));
 // mongoose.connect(MONGO_URI, {useNewUrlParser: true}, ()=>console.log("Connected to database"));
 mongoose.connect(MONGO_URI, (err) => {
-    if(err) console.log(err);
+    if (err) console.log(err);
     console.log("Connected to database")
 });
 
@@ -64,6 +64,7 @@ app.use('/store', require('./Controller/Store'));
 app.use('/profile', require('./Controller/Profile'));
 app.use('/period', require('./Controller/PayPeriod'));
 app.use('/timesheet', require('./Controller/Timesheet'));
+app.use('/sale', require('./Controller/Sale'));
 
 app.listen(port, () => {
     console.log(`example app listening to port ${port}`)
