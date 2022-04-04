@@ -4,8 +4,6 @@ const specialRouter = express.Router();
 const bcrypt = require('bcrypt');
 
 const Timesheet = require('../Model/Timesheet');
-const User = require('../Model/User');
-const Profile = require('../Model/Profile');
 const Special = require('../Model/Special');
 
 specialRouter.get('/all', (req, res) => {

@@ -65,6 +65,8 @@ app.use('/profile', require('./Controller/Profile'));
 app.use('/period', require('./Controller/PayPeriod'));
 app.use('/timesheet', require('./Controller/Timesheet'));
 app.use('/special', require('./Controller/Special'));
+app.use('/reg-entry', require('./Controller/RegularEntry'));
+
 app.listen(port, () => {
     console.log(`example app listening to port ${port}`)
 });

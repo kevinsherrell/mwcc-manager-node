@@ -11,10 +11,13 @@ const RegularEntrySchema = new Schema({
         required: true,
         default: Date.now()
     },
+    timesheet: {
+        type: Schema.Types.ObjectId,
+        required: true
+    },
     in: {
         type: Date,
-        required: true,
-        default: null
+        required: true
     },
     out: {
         type: Date,

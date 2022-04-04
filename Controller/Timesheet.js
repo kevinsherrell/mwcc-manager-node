@@ -16,6 +16,7 @@ timesheetRouter.get('/all', (req, res) => {
         }
     })
         .populate("special")
+        .populate("regularEntries")
 
 
 })
@@ -29,6 +30,7 @@ timesheetRouter.get("/:id", (req, res) => {
         }
     })
         .populate("special")
+        .populate("entries")
 })
 timesheetRouter.post('/create', (req, res) => {
     Timesheet.create({
