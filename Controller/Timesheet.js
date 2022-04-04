@@ -17,8 +17,9 @@ timesheetRouter.get('/all', (req, res) => {
     })
         .populate("special")
         .populate("regularEntries")
-
-
+        .populate("sickEntries")
+        .populate("vacationEntries")
+        .populate("period")
 })
 
 timesheetRouter.get("/:id", (req, res) => {
@@ -31,6 +32,9 @@ timesheetRouter.get("/:id", (req, res) => {
     })
         .populate("special")
         .populate("entries")
+        .populate("sickEntries")
+        .populate("vacationEntries")
+        .populate("period")
 })
 timesheetRouter.post('/create', (req, res) => {
     Timesheet.create({
@@ -52,10 +56,13 @@ timesheetRouter.put('/update/:id', (req, res) => {
 
     Timesheet.findByIdAndUpdate({_id: req.params.id}, req.body, {new: true}, (err, updatedTimesheet) => {
 
+
         try {
+            updatedTimesheet.dateUpdated = Date.now();
+            updatedTimesheet.save();
             return res.status(201).send(updatedTimesheet);
         } catch (err) {
-            return res.status(500).send(err);
+            return res.status(500).send(err.message);
 
         }
     })

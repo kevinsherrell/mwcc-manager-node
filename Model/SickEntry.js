@@ -11,10 +11,14 @@ const SickEntrySchema = new Schema({
         required: true,
         default: Date.now()
     },
+    timesheet: {
+        type: Schema.Types.ObjectId,
+        required: true,
+        ref: 'Timesheet'
+    },
     date: {
         type: Date,
-        required: true,
-        default: null
+        required: true
     },
     totalHours: {
         type: Number,
